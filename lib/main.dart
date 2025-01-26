@@ -1,3 +1,4 @@
+import 'package:dot_application/splash/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:dot_application/onboard/onboard_screen.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         backgroundColor: Colors.white,
-        body: OnboardScreen(),
+        body: SplashScreen(),
       ),
     );
   }
