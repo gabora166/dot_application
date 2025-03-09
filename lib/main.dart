@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         backgroundColor: Colors.white,
-        body: SurveyScreen(),
+        body: SplashScreen(),
       ),
     );
   }
