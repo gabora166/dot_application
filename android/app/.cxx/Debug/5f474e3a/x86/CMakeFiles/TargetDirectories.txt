@@ -1,0 +1,2 @@
+/Users/spidertunez/dot_application/android/app/.cxx/Debug/5f474e3a/x86/CMakeFiles/edit_cache.dir
+/Users/spidertunez/dot_application/android/app/.cxx/Debug/5f474e3a/x86/CMakeFiles/rebuild_cache.dir
