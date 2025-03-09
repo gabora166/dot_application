@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:provider/provider.dart';
-import 'package:dot_application/constants.dart';
 
 class QuestionModel {
   final String question;
@@ -41,6 +40,35 @@ class SurveyState with ChangeNotifier {
         "Neutral",
         "Not important",
       ],
+    ),
+    QuestionModel(
+      question: "Do you use shopping apps?",
+      options: ["Yes", "No", "Occasionally", "Rarely"],
+    ),
+    QuestionModel(
+      question: "What is your favorite online store?",
+      options: ["Amazon", "eBay", "AliExpress", "Other"],
+    ),
+    QuestionModel(
+      question: "Do you read product reviews before buying?",
+      options: ["Always", "Sometimes", "Rarely", "Never"],
+    ),
+    QuestionModel(
+      question: "How much do you spend on shopping monthly?",
+      options: [
+        "Less than \$100",
+        "\$100 - \$500",
+        "\$500 - \$1000",
+        "More than \$1000",
+      ],
+    ),
+    QuestionModel(
+      question: "Do you use loyalty programs?",
+      options: ["Yes", "No", "Sometimes", "Not sure"],
+    ),
+    QuestionModel(
+      question: "Would you recommend online shopping to others?",
+      options: ["Yes", "No", "Maybe", "Depends"],
     ),
   ];
 
@@ -97,6 +125,7 @@ class SurveyScreen extends StatelessWidget {
                   },
                 ),
                 SizedBox(height: 20),
+
                 Stack(
                   children: [
                     Container(
@@ -104,24 +133,26 @@ class SurveyScreen extends StatelessWidget {
                       child: Text(
                         "Let's find the best track for you:",
                         style: TextStyle(
-                          fontFamily: 'AbrilFatface',
                           fontWeight: FontWeight.w900,
                           fontSize: 40,
                         ),
                       ),
                     ),
+
                     Positioned(
                       right: -90,
                       top: -8,
                       child: Image.asset(
-                        "assets/3dicons.png",
+                        "assets/survey/3dicons.png",
                         width: 290,
                         height: 200,
                       ),
                     ),
                   ],
                 ),
+
                 SizedBox(height: 20),
+
                 Align(
                   alignment: Alignment.center,
                   child: Consumer<SurveyState>(
@@ -148,7 +179,6 @@ class SurveyScreen extends StatelessWidget {
                               child: Text(
                                 "Question ${surveyState.currentQuestionIndex + 1} of ${surveyState.questions.length}",
                                 style: TextStyle(
-                                  fontFamily: 'AbrilFatface',
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: Color(0xFF213555),
@@ -171,12 +201,75 @@ class SurveyScreen extends StatelessWidget {
                                           surveyState.questions[index].question,
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
-                                            fontFamily: 'AbrilFatface',
                                             fontSize: 30,
                                             fontWeight: FontWeight.w800,
                                             color: Color(0xFF213555),
                                           ),
                                         ),
+                                      ),
+                                      SizedBox(height: 30),
+                                      Column(
+                                        children:
+                                        surveyState.questions[index].options.map((
+                                            option,
+                                            ) {
+                                          return GestureDetector(
+                                            onTap:
+                                                () => surveyState
+                                                .nextQuestion(option),
+                                            child: Padding(
+                                              padding:
+                                              const EdgeInsets.symmetric(
+                                                vertical: 10,
+                                              ),
+                                              child: FadeInDown(
+                                                duration: Duration(
+                                                  milliseconds: 600,
+                                                ),
+                                                child: AnimatedContainer(
+                                                  duration: Duration(
+                                                    milliseconds: 300,
+                                                  ),
+                                                  width: double.infinity,
+                                                  padding: EdgeInsets.all(
+                                                    15,
+                                                  ),
+                                                  decoration: BoxDecoration(
+                                                    color: Color(
+                                                      0xFFFFFFFF,
+                                                    ),
+                                                    borderRadius:
+                                                    BorderRadius.circular(
+                                                      70,
+                                                    ),
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Color(
+                                                          0xFFF2EFE7,
+                                                        ).withOpacity(0.2),
+                                                        blurRadius: 8,
+                                                        spreadRadius: 3,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  child: Center(
+                                                    child: Text(
+                                                      option,
+                                                      textAlign:
+                                                      TextAlign.center,
+                                                      style: TextStyle(
+                                                        fontSize: 22,
+                                                        fontWeight:
+                                                        FontWeight.w600,
+                                                        color: Colors.black,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        }).toList(),
                                       ),
                                     ],
                                   );
